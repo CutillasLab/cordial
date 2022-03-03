@@ -4,7 +4,8 @@ cor_targets <- function(
   select_cols = colnames(dataset),
   filter_rows = NULL,
   metadata = NULL,
-  self = "yes"
+  self = "yes",
+  method = "BH"
 ) {
 
   # Pearson correlation analysis for a single target (sequential)
@@ -132,28 +133,28 @@ cor_targets <- function(
       dataset <- dataset[
         do.call(CJ, filter_rows),
         .SD,
-        .SDcols = select_cols,          # Select columns for analysis
+        .SDcols = select_cols,                      # Select columns for analysis
         on = names(filter_rows),
-        nomatch = NULL                  # Omit non-matching rows
+        nomatch = NULL                              # Omit non-matching rows
       ]
     } else {
       # Filter using metadata
       dataset <- dataset[
         metadata[
           do.call(CJ, filter_rows),
-          .SD,                          # Only `key` is returned to join as
+          .SD,                                      # Only `key` is returned to join as
           .SDcols = data.table::key(metadata),      # subset with dataset on shared key
           on = names(filter_rows),
-          nomatch = NULL                # Omit non-matching rows
+          nomatch = NULL                            # Omit non-matching rows
         ],
         .SD,
-        .SDcols = select_cols,          # Select columns for analysis
+        .SDcols = select_cols,                      # Select columns for analysis
         on = data.table::key(dataset),              # Join on `key`
-        nomatch = NULL                  # Omit non-matching rows
+        nomatch = NULL                              # Omit non-matching rows
       ]
     }
   } else {
-    dataset <- dataset[, select_cols, with = FALSE]  # Select columns
+    dataset <- dataset[, (select_cols)]             # Select columns
   }
 
 
@@ -197,7 +198,7 @@ cor_targets <- function(
         }
     }
 
-    # Order data.table
+    # Order output
     data.table::setorder(result_DT, Target, q)
 
     # Return output

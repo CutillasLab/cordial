@@ -3,8 +3,9 @@
 #' Computes pairwise Pearson's correlations of a dataset using
 #' \code{\link[collapse:pwcor]{collapse::pwcor}}, with the ability to filter
 #' and subset the input. Returns a long-format
-#' \code{\link[data.table:data.table]{data.table}} of p-values, adjusted
-#' p-values, and observation counts.
+#' \code{\link[data.table:data.table]{data.table}} of Pearson's product moment
+#' correlation coefficients, p-values, adjusted p-values, and observation
+#' counts.
 #'
 #' @section Subset:
 #' \code{\link{cor_map}} conveniently allows filtering (\code{filter_rows}) of
@@ -27,7 +28,10 @@
 #' \code{\link[stats:cor]{cor(..., use = "pairwise.complete.obs")}}).
 #'
 #' Adjusted p-values are computed with \code{\link[stats:p.adjust]{p.adjust}}
-#' using the Benjamini-Hochberg multiple testing adjustment method.
+#' using the one of the \code{\link[stats:p.adjust.methods]{p.adjust.methods}}:
+#' \code{c("holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr",
+#' "none")}. Default \code{"BH"} (alias \code{"fdr"}) is the Benjamini &
+#' Hochberg (1995) false discovery rate multiple testing adjustment method.
 #'
 #' @section Output:
 #' A \code{\link[data.table:data.table]{data.table}} in long-format is returned
@@ -53,9 +57,15 @@
 #' @param self A character scalar. Self-correlations are included if
 #' \code{"yes"} (default), or omitted if \code{"no"}.
 #'
+#' @param method A character scalar. Correction method for p-value adjustment,
+#' passed to \code{\link[stats:p.adjust]{p.adjust}}. One of: \code{c("holm",
+#' "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr", "none")}; \code{"BH"}
+#' (alias \code{"fdr"}) (default).
+#'
 #' @return A \code{\link[data.table:data.table]{data.table}} in long-format of
-#' of p-values, adjusted p-values, and observation counts for pairwise
-#' Pearson's correlations.
+#' of Pearson's product moment correlation coefficients (\code{r}), p-values
+#' (\code{p}), adjusted p-values (\code{q}), and observation counts
+#' (\code{n}) for pairwise Pearson's correlations.
 #'
 #' @seealso \itemize{
 #' \item \code{\link{cor_target}} for correlation analysis of a single target.
@@ -76,7 +86,8 @@ cor_map <- function(
   select_cols = colnames(dataset),
   filter_rows = NULL,
   metadata = NULL,
-  self = "yes"
+  self = "yes",
+  method = "BH"
 ) {
 
   # Pearson correlation analysis for an entire dataset
@@ -192,28 +203,28 @@ cor_map <- function(
       dataset <- dataset[
         do.call(CJ, filter_rows),
         .SD,
-        .SDcols = select_cols,          # Select columns for analysis
+        .SDcols = select_cols,                      # Select columns for analysis
         on = names(filter_rows),
-        nomatch = NULL                  # Omit non-matching rows
+        nomatch = NULL                              # Omit non-matching rows
       ]
     } else {
       # Filter using metadata
       dataset <- dataset[
         metadata[
           do.call(CJ, filter_rows),
-          .SD,                          # Only `key` is returned to join as
+          .SD,                                      # Only `key` is returned to join as
           .SDcols = data.table::key(metadata),      # subset with dataset on shared key
           on = names(filter_rows),
-          nomatch = NULL                # Omit non-matching rows
+          nomatch = NULL                            # Omit non-matching rows
         ],
         .SD,
-        .SDcols = select_cols,          # Select columns for analysis
+        .SDcols = select_cols,                      # Select columns for analysis
         on = data.table::key(dataset),              # Join on `key`
-        nomatch = NULL                  # Omit non-matching rows
+        nomatch = NULL                              # Omit non-matching rows
       ]
     }
   } else {
-    dataset <- dataset[, select_cols, with = FALSE]  # Select columns
+    dataset <- dataset[, (select_cols)]             # Select columns
   }
 
 
@@ -241,7 +252,7 @@ cor_map <- function(
                   c("Target", "Correlation", "n", "r", "p")
       ) %>%
       {
-        data.table::unique(
+        unique(
           .[, c("Target", "Correlation") :=
               list(
                 pmin(Target, Correlation),
@@ -253,7 +264,7 @@ cor_map <- function(
       }
 
     # Calculate adjusted p-value
-    result_DT[, `:=`(q = p.adjust(p, method = "BH"))]
+    result_DT[, `:=`(q = p.adjust(p, method = (method)))]
 
     if (!is.null(filter_rows)) {
       # Include filters used

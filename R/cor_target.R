@@ -1,10 +1,31 @@
+#' Correlation analysis of a single target
+#'
+#' Computes pairwise Pearson's correlations of a single target using
+#' \code{\link[stats:cor.test]{cor.test}}, with the ability to filter and
+#' subset the input. Returns a long-format
+#' \code{\link[data.table:data.table]{data.table}} of Pearson's product moment
+#' correlation coefficients, p-values and adjusted p-values.
+#'
+#' @param dataset
+#' @param target
+#' @param select_cols
+#' @param filter_rows
+#' @param metadata
+#' @param self
+#' @param method
+#'
+#' @return
+#' @export
+#'
+#' @examples
 cor_target <- function(
   dataset,
   target,
   select_cols = colnames(dataset),
   filter_rows = NULL,
   metadata = NULL,
-  self = "yes"
+  self = "yes",
+  method = "BH"
 ) {
 
   # Pearson correlation analysis for a single target (in parallel)
@@ -133,28 +154,28 @@ cor_target <- function(
       dataset <- dataset[
         do.call(CJ, filter_rows),
         .SD,
-        .SDcols = select_cols,          # Select columns for analysis
+        .SDcols = select_cols,                      # Select columns for analysis
         on = names(filter_rows),
-        nomatch = NULL                  # Omit non-matching rows
+        nomatch = NULL                              # Omit non-matching rows
       ]
     } else {
       # Filter using metadata
       dataset <- dataset[
         metadata[
           do.call(CJ, filter_rows),
-          .SD,                          # Only `key` is returned to join as
+          .SD,                                      # Only `key` is returned to join as
           .SDcols = data.table::key(metadata),      # subset with dataset on shared key
           on = names(filter_rows),
-          nomatch = NULL                # Omit non-matching rows
+          nomatch = NULL                            # Omit non-matching rows
         ],
         .SD,
-        .SDcols = select_cols,          # Select columns for analysis
+        .SDcols = select_cols,                      # Select columns for analysis
         on = data.table::key(dataset),              # Join on `key`
-        nomatch = NULL                  # Omit non-matching rows
+        nomatch = NULL                              # Omit non-matching rows
       ]
     }
   } else {
-    dataset <- dataset[, select_cols, with = FALSE]  # Select columns
+    dataset <- dataset[, (select_cols)]             # Select columns
   }
 
 
@@ -193,7 +214,7 @@ cor_target <- function(
 
 
     # Calculate adjusted p-value
-    result_DT[, `:=`(q = p.adjust(p, method = "BH"))]
+    result_DT[, `:=`(q = p.adjust(p, method = (method)))]
 
     if (!is.null(filter_rows)) {
       # Include filters used
@@ -209,7 +230,7 @@ cor_target <- function(
         }
     }
 
-    # Order data.table
+    # Order output
     data.table::setorder(result_DT, Target, q)
 
     # Return output

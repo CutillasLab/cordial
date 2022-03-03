@@ -5,6 +5,7 @@ cor_target_map <- function(
   filter_rows = NULL,
   metadata = NULL,
   self = "yes",
+  method = "BH",
   fun = cordial::cor_targets
 ) {
 
@@ -45,7 +46,8 @@ cor_target_map <- function(
           select_cols = select_cols,
           filter_rows = filter_rows,
           metadata = metadata,
-          self = self
+          self = self,
+          method = method
         ),
         .options = furrr::furrr_options(globals = FALSE)
       )
@@ -58,6 +60,7 @@ cor_target_map <- function(
       filter_rows = filter_rows,
       metadata = metadata,
       self = self,
+      method = method,
       fun = fun
     )
   )
