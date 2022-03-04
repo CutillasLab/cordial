@@ -1,23 +1,105 @@
 #' Correlation analysis of a single target
 #'
-#' Computes pairwise Pearson's correlations of a single target using
-#' \code{\link[stats:cor.test]{cor.test}}, with the ability to filter and
-#' subset the input. Returns a long-format
+#' Computes pairwise Pearson's correlations in parallel for a single target
+#' column of a dataset using \code{\link[stats:cor.test]{cor.test}}, with the
+#' ability to filter the input dataset and select a subset of columns to
+#' compute correlations. Returns a long-format
 #' \code{\link[data.table:data.table]{data.table}} of Pearson's product moment
 #' correlation coefficients, p-values and adjusted p-values.
 #'
-#' @param dataset
-#' @param target
-#' @param select_cols
-#' @param filter_rows
-#' @param metadata
-#' @param self
-#' @param method
+#' @section Subset:
+#' \code{\link{cor_target}} conveniently allows filtering (\code{filter_rows}) of
+#' the input \code{dataset} by performing a cross-join
+#' (\code{\link[data.table:CJ]{CJ}}) with a named \code{\link[base:list]{list}}
+#' referring to values present within the \code{dataset} itself, or a separate
+#' \code{metadata} \code{\link[data.table:data.table]{data.table}}. If the
+#' \code{dataset} contains non-numeric columns they must be omitted by
+#' selecting (\code{select_cols}) the columns to compute pairwise correlations.
+#' This mechanism also allows limiting of the correlations to perform. The
+#' subsetting algorithm is identical to that in \code{\link{cor_target_map}}
+#' and \code{\link{cor_map}}.
 #'
-#' @return
+#' @section Correlation analysis:
+#' \code{\link{cor_target}} uses \code{\link[stats:cor.test]{cor.test}} to test
+#' for an association between paired samples computed with Pearson's product
+#' moment correlation coefficient. Correlations are computed with incomplete
+#' cases removed
+#' (\code{\link[stats:cor.test]{cor.test(..., na.action = "na.omit")}}); see
+#' \code{\link[stats:na.omit]{na.omit}}.
+#'
+#' Adjusted p-values are computed with \code{\link[stats:p.adjust]{p.adjust}}
+#' using one of the \code{\link[stats:p.adjust.methods]{p.adjust.methods}}:
+#' \code{c("holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr",
+#' "none")}. Default \code{"BH"} (alias \code{"fdr"}) is the Benjamini &
+#' Hochberg (1995) false discovery rate multiple testing adjustment method.
+#'
+#' @section Output:
+#' A \code{\link[data.table:data.table]{data.table}} in long-format is returned
+#' with no pairwise duplicates: \eqn{corr(X,Y)} without \eqn{corr(Y,X)}. If
+#' \code{filter_rows} has been supplied, the filters are included.
+#'
+#' @section Parallelisation:
+#' \code{\link{cor_target}} computes correlations in parallel if an
+#' asynchronous \code{\link[future:plan]{future::plan}} is set prior to
+#' executing \code{\link{cor_target}}. See \code{\link{start_parallel}}.
+#'
+#' @section Utilisation:
+#' \code{\link{cor_target}} differs from \code{\link{cor_map}} in that pairwise
+#' correlations are computed for a single specified \code{target} column, with
+#' correlations limited to the columns specified in \code{select_cols}; whereas
+#' \code{\link{cor_map}} computes correlations for all pairs of columns
+#' specified in \code{select_cols}.
+#' \code{\link{cor_target_map}} varies from \code{\link{cor_target}} in that it
+#' allows specifying multiple \code{target}s.
+#'
+#' @param dataset A \code{\link[data.table:data.table]{data.table}}. Must be in
+#' column-major order.
+#'
+#' @param target A character scalar. A column name in \code{dataset} to compute
+#' correlations with (specified in \code{select_cols}), which must be of type
+#' numeric.
+#'
+#' @param select_cols A vector of column names (character), or indices
+#' (numeric). The columns to use for computing correlations, which must be of
+#' type numeric.
+#'
+#' @param filter_rows A named \code{\link[base:list]{list}}. Values specify
+#' which rows to subset. Names correspond to column names in \code{dataset}, or
+#' \code{metadata} if supplied.
+#'
+#' @param metadata A \code{\link[data.table:data.table]{data.table}}. Must be
+#' in column-major order. Optional input containing data to filter
+#' \code{dataset} by. If supplied, \code{metadata} and \code{dataset} must
+#' possess the same \code{\link[data.table:setkey]{key}} column.
+#'
+#' @param self A character scalar. Self-correlations are included if
+#' \code{"yes"} (default), or omitted if \code{"no"}.
+#'
+#' @param method A character scalar. Correction method for p-value adjustment,
+#' passed to \code{\link[stats:p.adjust]{p.adjust}}. One of: \code{c("holm",
+#' "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr", "none")}; \code{"BH"}
+#' (alias \code{"fdr"}) (default).
+#'
+#' @return A \code{\link[data.table:data.table]{data.table}} in long-format of
+#' Pearson's product moment correlation coefficients (\code{r}), p-values
+#' (\code{p}) and adjusted p-values (\code{q}) for pairwise Pearson's
+#' correlations.
+#'
+#' @seealso \itemize{
+#' \item \code{\link{cor_target_map}} for correlation analysis of multiple targets.
+#' \item \code{\link{cor_map}} for correlation analysis of a dataset.
+#' \item \code{\link{start_parallel}} for parallel processing.
+#' }
+#'
 #' @export
 #'
 #' @examples
+#' # Input
+#' mtcars_DT <- data.table::as.data.table(mtcars, keep.rownames = "id")
+#' data.table::setkey(mtcars_DT, id)
+#'
+#' # Correlation analysis
+#' cor_target(mtcars_DT, "mpg", select_cols = colnames(mtcars_DT[, !("id")]))
 cor_target <- function(
   dataset,
   target,
@@ -175,7 +257,7 @@ cor_target <- function(
       ]
     }
   } else {
-    dataset <- dataset[, (select_cols)]             # Select columns
+    dataset <- dataset[, select_cols, with = FALSE] # Select columns
   }
 
 
@@ -189,7 +271,7 @@ cor_target <- function(
                      method = "pearson", na.action = "na.omit"
             )[c("estimate", "p.value")]
           },
-          .x = .SD, .y = .(get(target)),
+          .x = .SD, .y = list(get(target)),
           .options = furrr::furrr_options(globals = FALSE)
         ),
         .SDcols = select_cols

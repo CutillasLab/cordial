@@ -154,7 +154,7 @@ cor_targets <- function(
       ]
     }
   } else {
-    dataset <- dataset[, (select_cols)]             # Select columns
+    dataset <- dataset[, select_cols, with = FALSE] # Select columns
   }
 
 
@@ -168,7 +168,7 @@ cor_targets <- function(
                    method = "pearson", na.action = "na.omit"
           )[c("estimate", "p.value")]
         },
-        .x = .SD, .y = .(get(target))
+        .x = .SD, .y = list(get(target))
       ),
       .SDcols = select_cols
       ]
@@ -182,7 +182,7 @@ cor_targets <- function(
     )
 
     # Calculate adjusted p-value
-    result_DT[, `:=`(q = p.adjust(p, method = "BH"))]
+    result_DT[, `:=`(q = p.adjust(p, method = (method)))]
 
     if (!is.null(filter_rows)) {
       # Include filters used

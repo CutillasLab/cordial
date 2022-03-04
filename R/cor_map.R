@@ -16,7 +16,7 @@
 #' \code{dataset} contains non-numeric columns they must be omitted by
 #' selecting (\code{select_cols}) the columns to compute pairwise correlations.
 #' This mechanism also allows limiting of the correlations to perform. The
-#' subsetting algorithm is identical in \code{\link{cor_target}} and
+#' subsetting algorithm is identical to that in \code{\link{cor_target}} and
 #' \code{\link{cor_target_map}}.
 #'
 #' @section Correlation analysis:
@@ -28,15 +28,24 @@
 #' \code{\link[stats:cor]{cor(..., use = "pairwise.complete.obs")}}).
 #'
 #' Adjusted p-values are computed with \code{\link[stats:p.adjust]{p.adjust}}
-#' using the one of the \code{\link[stats:p.adjust.methods]{p.adjust.methods}}:
+#' using one of the \code{\link[stats:p.adjust.methods]{p.adjust.methods}}:
 #' \code{c("holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr",
 #' "none")}. Default \code{"BH"} (alias \code{"fdr"}) is the Benjamini &
 #' Hochberg (1995) false discovery rate multiple testing adjustment method.
 #'
 #' @section Output:
 #' A \code{\link[data.table:data.table]{data.table}} in long-format is returned
-#' with no pairwise duplicates. If \code{filter_rows} has been supplied, the
-#' filters are included.
+#' with no pairwise duplicates: \eqn{corr(X,Y)} without \eqn{corr(Y,X)}. If
+#' \code{filter_rows} has been supplied, the filters are included.
+#'
+#' @section Utilisation:
+#' \code{\link{cor_map}} differs from \code{\link{cor_target}} in that
+#' correlations are computed for all pairs of columns specified in
+#' \code{select_cols}; whereas \code{\link{cor_target}} computes pairwise
+#' correlations for a single specified \code{target} column, with correlations
+#' limited to the columns specified in \code{select_cols}.
+#' \code{\link{cor_target_map}} varies from \code{\link{cor_target}} in that it
+#' allows specifying multiple \code{target}s.
 #'
 #' @param dataset A \code{\link[data.table:data.table]{data.table}}. Must be in
 #' column-major order.
@@ -224,7 +233,7 @@ cor_map <- function(
       ]
     }
   } else {
-    dataset <- dataset[, (select_cols)]             # Select columns
+    dataset <- dataset[, select_cols, with = FALSE] # Select columns
   }
 
 
