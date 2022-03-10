@@ -3,5 +3,6 @@
 export(cor_map)
 export(cor_target)
 export(cor_target_map)
+export(cor_targets)
 export(end_parallel)
 export(start_parallel)
