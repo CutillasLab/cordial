@@ -1,4 +1,4 @@
-#' Correlation analysis of a single target
+#' Correlation analysis of a single target in parallel
 #'
 #' Computes pairwise Pearson's correlations in parallel for a single target
 #' column of a dataset using \code{\link[stats:cor.test]{cor.test}}, with the
@@ -39,9 +39,13 @@
 #' \code{filter_rows} has been supplied, the filters are included.
 #'
 #' @section Parallelisation:
-#' \code{\link{cor_target}} computes correlations in parallel if an
-#' asynchronous \code{\link[future:plan]{future::plan}} is set prior to
-#' executing \code{\link{cor_target}}. See \code{\link{start_parallel}}.
+#' \code{\link{cor_target}} computes correlations in parallel if an asynchronous
+#' \code{\link[future:plan]{future::plan}} is set prior to executing
+#' \code{\link{cor_target}}. See \code{\link{start_parallel}}.
+#'
+#' \code{\link[furrr:future_map2]{furrr::future_map2}} is used to map
+#' simultaneously in parallel each column in \code{select_cols} with the
+#' \code{target} for processing via \code{\link[stats:cor.test]{cor.test}}.
 #'
 #' @section Utilisation:
 #' \code{\link{cor_target}} differs from \code{\link{cor_map}} in that pairwise
@@ -86,7 +90,8 @@
 #' correlations.
 #'
 #' @seealso \itemize{
-#' \item \code{\link{cor_target_map}} for correlation analysis of multiple targets.
+#' \item \code{\link{cor_target_map}} for correlation analysis of multiple
+#' targets in parallel.
 #' \item \code{\link{cor_map}} for correlation analysis of a dataset.
 #' \item \code{\link{start_parallel}} for parallel processing.
 #' }

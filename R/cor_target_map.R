@@ -1,4 +1,4 @@
-#' Correlation analysis of multiple targets
+#' Correlation analysis of multiple targets in parallel
 #'
 #' Computes pairwise Pearson's correlations in parallel for multiple target
 #' columns of a dataset using \code{\link[stats:cor.test]{cor.test}}, with the
@@ -43,9 +43,13 @@
 #' asynchronous \code{\link[future:plan]{future::plan}} is set prior to
 #' executing \code{\link{cor_target_map}}. See \code{\link{start_parallel}}.
 #'
-#' \code{\link{cor_target_map}} maps a sequential version of
-#' \code{\link{cor_target}} (\code{\link{cor_targets}}, not exported) to each
-#' \code{target} in parallel.
+#' \code{\link[furrr:future_map]{furrr::future_map}} is used to map
+#' simultaneously in parallel each element in \code{target} for processing via
+#' \code{\link[stats:cor.test]{cor.test}}. Specifically,
+#' \code{\link{cor_target_map}} by default maps \code{\link{cor_targets}} (a
+#' sequential variant of \code{\link{cor_target}}) to avoid nested parallel
+#' operations: the nested parallel operations both attempt to utilise the full
+#' complement of CPUs/cores which would result in inefficient load balancing.
 #'
 #' @section Utilisation:
 #' \code{\link{cor_target_map}} differs from \code{\link{cor_map}} in that
@@ -59,7 +63,7 @@
 #' @param dataset A \code{\link[data.table:data.table]{data.table}}. Must be in
 #' column-major order.
 #'
-#' @param target A character scalar. A column name in \code{dataset} to compute
+#' @param target A character vector. Column names in \code{dataset} to compute
 #' correlations with (specified in \code{select_cols}), which must be of type
 #' numeric.
 #'
@@ -84,8 +88,9 @@
 #' "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr", "none")}; \code{"BH"}
 #' (alias \code{"fdr"}) (default).
 #'
-#' @param fun A function. Currently, only sensible with
-#' \code{cordial::cor_targets}.
+#' @param fun A function. Currently, only compatible with
+#' \code{\link[cordial:cor_targets]{cordial::cor_targets}} (default), or
+#' \code{\link[cordial:cor_target]{cordial::cor_target}}. See Parallelisation.
 #'
 #' @return A \code{\link[data.table:data.table]{data.table}} in long-format of
 #' Pearson's product moment correlation coefficients (\code{r}), p-values
@@ -93,7 +98,8 @@
 #' correlations.
 #'
 #' @seealso \itemize{
-#' \item \code{\link{cor_target}} for correlation analysis of a single target.
+#' \item \code{\link{cor_target}} for correlation analysis of a single target
+#' in parallel.
 #' \item \code{\link{cor_map}} for correlation analysis of a dataset.
 #' \item \code{\link{start_parallel}} for parallel processing.
 #' }
