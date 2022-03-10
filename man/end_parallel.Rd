@@ -29,8 +29,10 @@ end_parallel()
 \seealso{
 \itemize{
 \item \code{\link{start_parallel}} for parallel processing.
-\item \code{\link{cor_target}} for correlation analysis of a single target.
-\item \code{\link{cor_target_map}} for correlation analysis of multiple targets.
+\item \code{\link{cor_target}} for correlation analysis of a single target
+in parallel.
+\item \code{\link{cor_target_map}} for correlation analysis of multiple
+targets in parallel.
 \item \code{\link[future:plan]{future::plan}} for setting the future plan
 directly.
 }

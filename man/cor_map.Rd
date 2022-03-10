@@ -110,7 +110,9 @@ cor_map(mtcars_DT, select_cols = colnames(mtcars_DT[, !("id")]))
 }
 \seealso{
 \itemize{
-\item \code{\link{cor_target}} for correlation analysis of a single target.
-\item \code{\link{cor_target_map}} for correlation analysis of multiple targets.
+\item \code{\link{cor_target}} for correlation analysis of a single target
+in parallel.
+\item \code{\link{cor_target_map}} for correlation analysis of multiple
+targets in parallel.
 }
 }
