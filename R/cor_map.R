@@ -105,8 +105,8 @@ cor_map <- function(
 
   # Load packages
   require(magrittr)
-  require(purrr)
   require(tidyr)
+  require(purrr)
   require(collapse)
   require(data.table)
 
@@ -117,8 +117,8 @@ cor_map <- function(
     stop(
       '
       Error: `dataset` must be a `data.table`:
-      ℹ `dataset` has been supplied.
-      ✖ `dataset` is not a `data.table`.
+      i `dataset` has been supplied.
+      x `dataset` is not a `data.table`.
       ',
       call. = FALSE
     )
@@ -128,9 +128,9 @@ cor_map <- function(
     stop(
       '
       Error: `self` must be a single value:
-      ℹ `self` must be single value.
-      ℹ `self` must be one from `c("yes", "no")`.
-      ✖ `self` is incorrect.
+      i `self` must be single value.
+      i `self` must be one from `c("yes", "no")`.
+      x `self` is incorrect.
       ',
       call. = FALSE
     )
@@ -141,8 +141,8 @@ cor_map <- function(
       stop(
         '
       Error: `metadata` must be a `data.table`:
-      ℹ `metadata` has been supplied.
-      ✖ `metadata` is not a `data.table`.
+      i `metadata` has been supplied.
+      x `metadata` is not a `data.table`.
       ',
       call. = FALSE
       )
@@ -151,9 +151,9 @@ cor_map <- function(
       stop(
         '
         Error: `dataset` and `metadata` must be "sorted" by the same column:
-        ℹ Did you mean to input separate `metadata`?
-        ℹ Set key with `data.table::setkey(x, ...)`.
-        ✖ `dataset` and `metadata` attribute "sorted" is not identical.
+        i Did you mean to input separate `metadata`?
+        i Set key with `data.table::setkey(x, ...)`.
+        x `dataset` and `metadata` attribute "sorted" is not identical.
         ',
         call. = FALSE
       )
@@ -162,8 +162,8 @@ cor_map <- function(
       stop(
         '
         Error: `select_cols` must index within `metadata`.
-        ℹ `metadata` has been supplied.
-        ✖ `select_cols` does not index within `metadata`.
+        i `metadata` has been supplied.
+        x `select_cols` does not index within `metadata`.
         ',
         call. = FALSE
       )
@@ -175,9 +175,9 @@ cor_map <- function(
       stop(
         '
         Error: `filter_rows` must be a named list:
-        ℹ `filter_rows` must be a list.
-        ℹ All elements of `filter_rows` must be named.
-        ✖ `filter_rows` is not a named list.
+        i `filter_rows` must be a list.
+        i All elements of `filter_rows` must be named.
+        x `filter_rows` is not a named list.
         ',
         call. = FALSE
       )
@@ -187,8 +187,8 @@ cor_map <- function(
         stop(
           '
           Error: `select_cols` must index within `dataset`.
-          ℹ `filter_rows` has been supplied.
-          ✖ `select_cols` does not index within `dataset`.
+          i `filter_rows` has been supplied.
+          x `select_cols` does not index within `dataset`.
           ',
           call. = FALSE
         )
@@ -197,9 +197,9 @@ cor_map <- function(
       stop(
         '
         Error: `select_cols` must index within `metadata`.
-        ℹ `filter_rows` has been supplied.
-        ℹ `metadata` has been supplied.
-        ✖ `select_cols` does not index within `metadata`.
+        i `filter_rows` has been supplied.
+        i `metadata` has been supplied.
+        x `select_cols` does not index within `metadata`.
         ',
         call. = FALSE
       )

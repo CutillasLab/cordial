@@ -1,0 +1,45 @@
+#' Cancer cell line metadata
+#'
+#' A dataset of cancer cell line sample information from the Cancer Dependency
+#' Map (DepMap) - a collaboration of the Broad Institute (Cambridge,
+#' Massachusetts, USA) and the Wellcome Sanger Institute (Hinxton,
+#' Cambridgeshire, UK).
+#'
+#' Cancer cell line metadata using lineage, lineage subtype, mutation,
+#' copy number, and gene expression data (prefixed with CCLE) for cell lines.
+#'
+#' Dataset posted on 01.02.2021, 20:21 by Broad DepMap.
+#'
+#' @format A \code{data.table} with 1811 rows (cell lines), and 26 columns
+#' (cell line metadata):
+#' \describe{
+#'   \item{\strong{depmap_id}}{Cell line DepMap ID. The \code{data.table} \code{key}}
+#'   \item{\strong{cell_line_name}}{Cell line name}
+#'   \item{\strong{stripped_cell_line_name}}{Stripped cell line name}
+#'   \item{\strong{CCLE_Name}}{Cancer Cell Line Encyclopedia name}
+#'   \item{\strong{Alias}}{Alias}
+#'   \item{\strong{COSMICID}}{Catalogue Of Somatic Mutations In Cancer ID}
+#'   \item{\strong{sex}}{Sex of individual from which sample was derived}
+#'   \item{\strong{source}}{Tissue sample source}
+#'   \item{\strong{Achilles_n_replicates}}{Achilles number of replicates}
+#'   \item{\strong{cell_line_NNMD}}{Cell line null-normalized median difference}
+#'   \item{\strong{culture_type}}{Cell culture type}
+#'   \item{\strong{culture_medium}}{Culture medium}
+#'   \item{\strong{cas9_activity}}{Cas9 activity}
+#'   \item{\strong{RRID}}{Research resource identifier}
+#'   \item{\strong{WTSI_Master_Cell_ID}}{Wellcome Trust Sanger Institute ID}
+#'   \item{\strong{sample_collection_site}}{Sample collection site}
+#'   \item{\strong{primary_or_metastasis}}{Primary or metastatic cancer cell line}
+#'   \item{\strong{primary_disease}}{Primary disease}
+#'   \item{\strong{Subtype}}{Subtype disease}
+#'   \item{\strong{age}}{Age of individual from which sample was derived}
+#'   \item{\strong{Sanger_Model_ID}}{Sanger model ID}
+#'   \item{\strong{depmap_public_comments}}{Additional information}
+#'   \item{\strong{lineage}}{Cancer cell line lineage}
+#'   \item{\strong{lineage_subtype}}{Cancer cell line lineage subtype}
+#'   \item{\strong{lineage_sub_subtype}}{Cancer cell line lineage sub-subtype}
+#'   \item{\strong{lineage_molecular_subtype}}{Cancer cell line lineage molecular subtype}
+#' }
+#'
+#' @source \url{https://doi.org/10.6084/m9.figshare.13681534.v1}
+"cellmeta_DT"

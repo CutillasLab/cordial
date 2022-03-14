@@ -143,11 +143,11 @@ cor_target_map <- function(
     stop(
       '
       Error: `target` must be a "character" vector:
-      ℹ `target` must be of type "character".
-      ℹ `target` must be a vector of length > 1.
-      ℹ Did you mean to supply a single target?
-      ℹ Use `cor_target()` instead for a single target.
-      ✖ `target` is not a "character" vector.
+      i `target` must be of type "character".
+      i `target` must be a vector of length > 1.
+      i Did you mean to supply a single target?
+      i Use `cor_target()` instead for a single target.
+      x `target` is not a "character" vector.
       ',
       call. = FALSE
     )
