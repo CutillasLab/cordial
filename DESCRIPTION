@@ -1,6 +1,6 @@
 Package: cordial
 Title: A Pleasant Tonic For Convenient Correlation Analysis In R
-Version: 0.0.0.9000
+Version: 0.0.1
 Authors@R: 
     person("Irbaz", "Badshah", , "i.i.badshah@se20.qmul.ac.uk", 
            role = c("aut", "cre"), comment = c(ORCID = "0000-0002-7545-3851"))
@@ -14,11 +14,14 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
-Imports: 
-    collapse (>= 1.7.2),
-    data.table (>= 1.14.2),
-    furrr (>= 0.2.3),
-    future (>= 1.23.0),
+Imports:
     magrittr (>= 2.0.1),
+    tidyr (>= 1.1.4),
     purrr (>= 0.3.4),
-    tidyr (>= 1.1.4)
+    future (>= 1.23.0),
+    furrr (>= 0.2.3),
+    collapse (>= 1.7.2),
+    data.table (>= 1.14.2)
+Depends: 
+    R (>= 3.5.0)
+LazyData: true
