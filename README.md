@@ -15,17 +15,17 @@ There are multiple options to install the package, which are listed in decreasin
   1. Click [Releases](https://github.com/iibadshah/cordial/releases)
   2. Download *one* of either the `.zip`, or the `.tar.gz`
   3. Open *RStudio* > *Tools* > *Install Packages* > in the new popup under *Install from:* select *Package Archive File (.zip; .tar.gz)* > browse to and select the downloaded `.zip` or `.tar.gz` > click *Install*
-  - **i:** *This will contain the datasets*
+  - **i :** *This will contain the datasets*
 
 **B.** Install directly from the `cordial` GitHub repository:
   1. `devtools::install_github("iibadshah/cordial")`
-  - **!:** *This will not contain the datasets*
+  - **! :** *This will not contain the datasets*
 
 **C.** Install from source files:
   1. Download all files and folders from `https://github.com/iibadshah/cordial` into a local folder named `cordial` (keeping the exact same folder structure and file names)
   2. Open RStudio > File > Open Project > navigate into the `cordial` folder > select `cordial.Rproj`
   3. Run `devtools::install(build = TRUE)`
-  - **!:** *This will not contain the datasets*
+  - **! :** *This will not contain the datasets*
 
 ## Notes
   - `cordial/data/` only contains empty placeholder files, as the actual data are too large to upload as source files to GitHub.
