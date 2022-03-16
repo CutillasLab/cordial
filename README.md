@@ -9,13 +9,17 @@ coefficients, p-values, adjusted p-values, and observation counts in
 long-format.
 
 ## Installation
-**A.** Install directly from the `cordial` GitHub repository:
+**A.** Install from `.zip` or `.tar.gz` bundle:
+1. Click [Releases]()
+
+**B.** Install directly from the `cordial` GitHub repository:
 `devtools::install_github("iibadshah/cordial")`
 
-**B.** Alternatively:
+**C.** Install from source files:
   1. Download all files and folders from `https://github.com/iibadshah/cordial` into a local folder named `cordial` (keeping the exact same folder structure and file names)
   2. Open RStudio > File > Open Project > navigate into the `cordial` folder > select `cordial.Rproj`
   3. Run `devtools::install(build = TRUE)`
 
 ## Notes
-`cordial/data/` only contains empty placeholder files, as the actual data are too large to upload to GitHub.
+- `cordial/data/` only contains empty placeholder files, as the actual data are too large to upload to GitHub.
+- The `.zip` and the `.tar.gz` does contain the actual data.
