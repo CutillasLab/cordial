@@ -18,7 +18,7 @@ There are multiple options to install the package, which are listed in decreasin
   - **i:** *This will contain the datasets*
 
 **B.** Install directly from the `cordial` GitHub repository:
-`devtools::install_github("iibadshah/cordial")`
+  1. `devtools::install_github("iibadshah/cordial")`
   - **!:** *This will not contain the datasets*
 
 **C.** Install from source files:
@@ -28,5 +28,5 @@ There are multiple options to install the package, which are listed in decreasin
   - **!:** *This will not contain the datasets*
 
 ## Notes
-- `cordial/data/` only contains empty placeholder files, as the actual data are too large to upload as source files to GitHub.
-- The `.zip` and the `.tar.gz` does contain the actual data.
+  - `cordial/data/` only contains empty placeholder files, as the actual data are too large to upload as source files to GitHub.
+  - The `.zip` and the `.tar.gz` does contain the actual data.
