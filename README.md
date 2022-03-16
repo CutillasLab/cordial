@@ -13,7 +13,7 @@ There are multiple options to install the package, which are listed in decreasin
 
 **A.** Install from `.zip` or `.tar.gz` bundle:
   1. Click [Releases](https://github.com/iibadshah/cordial/releases)
-  2. Download *one* of either the `.zip`, or the `.tar.gz` assets (not the `Source` versions, as this only contains placeholder files in `data/`)
+  2. Download *one* of either the `.zip`, or the `.tar.gz` assets (not the `Source code` which contains placeholder files in `data/`, see [Notes])
   3. Open *RStudio* > *Tools* > *Install Packages* > in the new popup under *Install from:* select *Package Archive File (.zip; .tar.gz)* > browse to and select the downloaded `.zip` or `.tar.gz` > click *Install*
   - **i :** *This will contain the datasets*
 
