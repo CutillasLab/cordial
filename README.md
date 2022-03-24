@@ -29,4 +29,4 @@ There are multiple options to install the package, which are listed in decreasin
 
 ## Notes
   - `cordial/data/` only contains empty placeholder files, as the actual data are too large to upload as source files to GitHub.
-  - The `.zip` and the `.tar.gz` does contain the actual data.
+  - The `.zip` and the `.tar.gz` in the latest [release's](https://github.com/iibadshah/cordial/releases) assets does contain the actual data.
