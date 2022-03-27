@@ -9,24 +9,17 @@ coefficients, p-values, adjusted p-values, and observation counts in
 long-format.
 
 ## Installation
-There are multiple options to install the package, which are listed in decreasing order of preference.
 
-**A.** Install from `.zip` or `.tar.gz` bundle:
+Install the full package from the binary archive file:
   1. Click [Releases](https://github.com/iibadshah/cordial/releases)
-  2. Download *one* of either the `.zip`, or the `.tar.gz` assets (not the `Source code` which contains placeholder files in `data/`, see [Notes](https://github.com/iibadshah/cordial/blob/main/README.md#notes))
-  3. Open *RStudio* > *Tools* > *Install Packages* > in the new popup under *Install from:* select *Package Archive File (.zip; .tar.gz)* > browse to and select the downloaded `.zip` or `.tar.gz` > click *Install*
+  2. Download the `.zip` asset *(not the `Source code` which only contains empty placeholder files in `data/`, see [Notes](https://github.com/iibadshah/cordial/blob/main/README.md#notes))*
+  3. Install from RStudio (a.) or R console (b.):
+     a. Open *RStudio* > *Tools* > *Install Packages* > in the new popup under *Install from:* select *Package Archive File (.zip; .tar.gz)* > browse to and select the downloaded `.zip` or `.tar.gz` > click *Install*
+     b. install.packages("C:/Path/to/cordial_0.01.03.zip", repos = NULL, type = "win.binary")
+        - *Replace* `"C:/Path/to/cordial_0.01.03.zip"` *with the actual path to the actual file. In R code backslashes (*`\`*) must be escaped (*`\\`*), otherwise use forward slashes (*`/`*).*
   - **i :** *This will contain the datasets*
-
-**B.** Install directly from the `cordial` GitHub repository:
-  1. `devtools::install_github("iibadshah/cordial")`
-  - **! :** *This will not contain the datasets*
-
-**C.** Install from source files:
-  1. Download all files and folders from `https://github.com/iibadshah/cordial` into a local folder named `cordial` (keeping the exact same folder structure and file names)
-  2. Open RStudio > File > Open Project > navigate into the `cordial` folder > select `cordial.Rproj`
-  3. Run `devtools::install(build = TRUE)`
-  - **! :** *This will not contain the datasets*
 
 ## Notes
   - `cordial/data/` only contains empty placeholder files, as the actual data are too large to upload as source files to GitHub.
-  - The `.zip` and the `.tar.gz` in the latest [release's](https://github.com/iibadshah/cordial/releases) assets does contain the actual data.
+  - The `.zip` in the latest [release's](https://github.com/iibadshah/cordial/releases) assets does contain the actual data.
+  - Install the `.zip` (e.g. `cordial_0.01.03.zip`) **not** the source code (e.g. `Source code (zip)`, or `Source code (tar.gz)`) from the latest [release's](https://github.com/iibadshah/cordial/releases) assets.
