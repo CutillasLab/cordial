@@ -33,6 +33,6 @@ Cancer cell line genetic dependencies estimated using the CERES model
 applied to the Avana library CRISPR-Cas9 genome-scale knockout (prefixed
 with Achilles).
 
-Dataset posted on 01.02.2021, 20:21 by Broad DepMap.
+\strong{Dataset posted on 01.02.2021, 20:21 by Broad DepMap.}
 }
 \keyword{datasets}

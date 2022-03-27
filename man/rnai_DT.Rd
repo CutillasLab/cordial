@@ -34,6 +34,6 @@ applied to three large-scale RNAi screening datasets: the Broad Institute
 Project Achilles, Novartis Project DRIVE, and the Marcotte et al. breast
 cell line dataset.
 
-Dataset posted on 09.04.2020, 18:06 by Cancer Data Science.
+\strong{Dataset posted on 09.04.2020, 18:06 by Cancer Data Science.}
 }
 \keyword{datasets}

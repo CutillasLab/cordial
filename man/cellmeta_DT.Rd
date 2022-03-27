@@ -52,6 +52,6 @@ Cambridgeshire, UK).
 Cancer cell line metadata using lineage, lineage subtype, mutation,
 copy number, and gene expression data (prefixed with CCLE) for cell lines.
 
-Dataset posted on 01.02.2021, 20:21 by Broad DepMap.
+\strong{Dataset posted on 01.02.2021, 20:21 by Broad DepMap.}
 }
 \keyword{datasets}
