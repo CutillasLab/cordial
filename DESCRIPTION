@@ -1,6 +1,6 @@
 Package: cordial
 Title: A Pleasant Tonic For Convenient Correlation Analysis In R
-Version: 0.01.00
+Version: 0.01.03
 Authors@R: 
     person("Irbaz", "Badshah", , "i.i.badshah@se20.qmul.ac.uk", 
            role = c("aut", "cre"), comment = c(ORCID = "0000-0002-7545-3851"))
