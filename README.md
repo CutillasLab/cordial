@@ -22,4 +22,4 @@ Install the full package from the binary archive file:
 ## Notes
   - `cordial/data/` only contains empty placeholder files, as the actual data are too large to upload as source files to GitHub.
   - The `.zip` in the latest [release's](https://github.com/iibadshah/cordial/releases) assets does contain the actual data.
-  - Install the `.zip` (e.g. `cordial_0.01.03.zip`) **not** the source code (e.g. `Source code (zip)`, or `Source code (tar.gz)`) from the latest [release's](https://github.com/iibadshah/cordial/releases) assets.
+  - Download and install the `.zip` (e.g. `cordial_0.01.03.zip`) **not** the source code (e.g. `Source code (zip)`, or `Source code (tar.gz)`) from the latest [release's](https://github.com/iibadshah/cordial/releases) assets.
