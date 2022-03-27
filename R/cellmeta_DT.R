@@ -8,7 +8,7 @@
 #' Cancer cell line metadata using lineage, lineage subtype, mutation,
 #' copy number, and gene expression data (prefixed with CCLE) for cell lines.
 #'
-#' Dataset posted on 01.02.2021, 20:21 by Broad DepMap.
+#' \strong{Dataset posted on 01.02.2021, 20:21 by Broad DepMap.}
 #'
 #' @format A \code{data.table} with 1811 rows (cell lines), and 26 columns
 #' (cell line metadata):

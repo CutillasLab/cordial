@@ -8,7 +8,7 @@
 #' applied to the Avana library CRISPR-Cas9 genome-scale knockout (prefixed
 #' with Achilles).
 #'
-#' Dataset posted on 01.02.2021, 20:21 by Broad DepMap.
+#' \strong{Dataset posted on 01.02.2021, 20:21 by Broad DepMap.}
 #'
 #' @format A \code{data.table} with 945 rows (cell lines), and 17,648 columns
 #' (6 cell line metadata, 17,642 genes):
