@@ -12,7 +12,7 @@ long-format.
 
 Install the full package from the binary archive file:
   1. Click [Releases](https://github.com/iibadshah/cordial/releases)
-  2. Download the `.zip` asset *(not the `Source code` which only contains empty placeholder files in `data/`, see [Notes](https://github.com/iibadshah/cordial/blob/main/README.md#notes))*
+  2. Download the `.zip` asset *(not the `Source code`, see [Notes](https://github.com/iibadshah/cordial/blob/main/README.md#notes))*
   3. Install from RStudio (a.), or R console (b.):
      - a. Open *RStudio* > *Tools* > *Install Packages* > in the new popup under *Install from:* select *Package Archive File (.zip; .tar.gz)* > browse to and select the downloaded `.zip` > click *Install*
      - b. install.packages("C:/Path/to/cordial_0.01.03.zip", repos = NULL, type = "win.binary")
@@ -20,6 +20,6 @@ Install the full package from the binary archive file:
   - **i :** *This will contain the datasets*
 
 ## Notes
-  - `cordial/data/` only contains empty placeholder files, as the actual data are too large to upload as source files to GitHub.
+  - The source files in `cordial/data/` only contains *empty* placeholders, as the actual data files are too large to upload as source files to GitHub.
   - The `.zip` in the latest [release's](https://github.com/iibadshah/cordial/releases) assets does contain the actual data.
-  - Download and install the `.zip` (e.g. `cordial_0.01.03.zip`) **not** the source code (e.g. `Source code (zip)`, or `Source code (tar.gz)`) from the latest [release's](https://github.com/iibadshah/cordial/releases) assets.
+  - Download and install the `.zip` (e.g. `cordial_0.01.03.zip`) ***not*** the source code (e.g. `Source code (zip)`, or `Source code (tar.gz)`) from the latest [release's](https://github.com/iibadshah/cordial/releases) assets.
