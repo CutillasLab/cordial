@@ -15,7 +15,8 @@ Install the full package from the binary archive file:
   2. Download the `.zip` asset *(not the `Source code`, see [Notes](https://github.com/iibadshah/cordial/blob/main/README.md#notes))*
   3. Install from RStudio (a.), or R console (b.):
      - a. Open *RStudio* > *Tools* > *Install Packages* > in the new popup under *Install from:* select *Package Archive File (.zip; .tar.gz)* > browse to and select the downloaded `.zip` > click *Install*
-     - b. `install.packages("C:/Path/to/cordial_0.01.03.zip", repos = NULL, type = "win.binary")`
+     - b. Run: `install.packages("C:/Path/to/cordial_0.01.03.zip", repos = NULL, type = "win.binary")`
+     - Alternatively, run: `devtools::install_local(path = "C:/Path/to/cordial_0.01.03.zip")`
           - *Replace* `"C:/Path/to/cordial_0.01.03.zip"` *with a string of the actual path to the actual file. In R code backslashes (*`\`*) must be escaped (*`\\`*), otherwise use forward slashes (*`/`*).*
   - **i :** *This will contain the datasets*
 
