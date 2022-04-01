@@ -20,7 +20,7 @@ Install the full package from the binary archive file:
        - Run: `install.packages("C:/Path/to/cordial_0.01.03.zip", repos = NULL, type = "win.binary")`
        - Alternatively, run: `devtools::install_local(path = "C:/Path/to/cordial_0.01.03.zip")`
        - **:information_source: :** *Replace* `"C:/Path/to/cordial_0.01.03.zip"` *with a string of the actual path to the actual file. In R code backslashes (*`\`*) must be escaped (*`\\`*), otherwise use forward slashes (*`/`*).*
-  - **:information_source: :** *This will contain the datasets*
+  - **:information_source: :** *This will include the package datasets*
 
 ## Notes
   - The source files in `cordial/data/` only contains *empty* placeholders, as the actual data files are too large to upload as source files to GitHub.
