@@ -9,20 +9,26 @@ coefficients, p-values, adjusted p-values, and observation counts in
 long-format.
 
 ## Installation
+### RStudio
+1. Download the Package Archive File (**cordial_x.x.x.tar.gz**) of the latest [release](https://github.com/CutillasLab/cordial/releases/latest).
+   - *Not the Source code*
+3. In RStudio, click: **Tools** menu
+4. Select: **Install Packages...**
+5. In the **Install from** list box, select: **Package Archive File (.zip; .tar.gz)**
+6. Click: **Browse** to select the downloaded `cordial` Package Archive File
+7. Select: **Install**
 
-Install the full package from the binary archive file:
-  1. Click [Releases](https://github.com/iibadshah/cordial/releases)
-  2. Download the `.zip` asset *(not the `Source code`, see [Notes](https://github.com/iibadshah/cordial/blob/main/README.md#notes))*
-  3. Install:
-     - RStudio:
-       - Open *RStudio* > *Tools* > *Install Packages* > in the new popup under *Install from:* select *Package Archive File (.zip; .tar.gz)* > browse to and select the downloaded `.zip` > click *Install*
-     - R console:
-       - Run: `install.packages("C:/Path/to/cordial_0.01.03.zip", repos = NULL, type = "win.binary")`
-       - Alternatively, run: `devtools::install_local(path = "C:/Path/to/cordial_0.01.03.zip")`
-       - **:information_source: :** *Replace* `"C:/Path/to/cordial_0.01.03.zip"` *with a string of the actual path to the actual file. In R code backslashes (*`\`*) must be escaped (*`\\`*), otherwise use forward slashes (*`/`*).*
-  - **:information_source: :** *Installing the [Release](https://github.com/iibadshah/cordial/releases) will include the package datasets*
+### R console
+#### One-liner
+Run: `devtools::install_github("CutillasLab/cordial@*release")`
+   - *You may first need to install `devtools`: `install.packages("devtools")`*
+#### Manual
+1. Download the Package Archive File (**cordial_x.x.x.tar.gz**) of the latest [release](https://github.com/CutillasLab/cordial/releases/latest).
+   - *Not the Source code*
+2. Run: `devtools::install_local(path = "C:/path/to/cordial_x.x.x.tar.gz")`
+   - *Replace the string argument to* `path` *with the actual location*
+   - *You may first need to install `devtools`: `install.packages("devtools")`*
 
 ## Notes
-  - The source files in `cordial/data/` only contain *empty* placeholders, as the actual data files are too large to upload as source files to GitHub.
-  - The `.zip` in the latest [release's](https://github.com/iibadshah/cordial/releases) assets *does* contain the actual data.
-  - Download and install the `.zip` (e.g. `cordial_0.01.03.zip`) ***not*** the source code (e.g. `Source code (zip)`, or `Source code (tar.gz)`) from the latest [release's](https://github.com/iibadshah/cordial/releases) assets.
+  - The source files in `cordial/data/` only contain *EMPTY* placeholders, as the actual data files are too large to upload as source files to GitHub.
+  - The `.zip` and `.tar.gz` in the latest [release's](https://github.com/CutillasLab/cordial/releases/latest) assets *DOES* contain the actual data.
