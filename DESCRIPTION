@@ -1,8 +1,8 @@
 Package: cordial
 Title: A Pleasant Tonic For Convenient Correlation Analysis In R
-Version: 0.01.03
+Version: 0.01.06
 Authors@R: 
-    person("Irbaz", "Badshah", , "i.i.badshah@se20.qmul.ac.uk", 
+    person("Irbaz", "Badshah", , "i.badshah@qmul.ac.uk", 
            role = c("aut", "cre"), comment = c(ORCID = "0000-0002-7545-3851"))
 Description: Computes pairwise Pearson's correlations of a dataset, or 
     specified targets simultaneously in parallel. Conveniently includes the 
@@ -13,7 +13,7 @@ Description: Computes pairwise Pearson's correlations of a dataset, or
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.3
 Imports:
     magrittr (>= 2.0.1),
     tidyr (>= 1.1.4),
