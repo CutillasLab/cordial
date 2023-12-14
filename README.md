@@ -31,5 +31,5 @@ Run: `devtools::install_github("CutillasLab/cordial@*release")`
    - *You may first need to install `devtools`: `install.packages("devtools")`*
 
 ## Notes
-  - The source files in `cordial/data/` only contain *EMPTY* placeholders, as the actual data files are too large to upload as source files to GitHub.
-  - The `.zip` and `.tar.gz` in the latest [release's](https://github.com/CutillasLab/cordial/releases/latest) assets *DOES* contain the actual data.
+  - The source files in `cordial/data/` does *NOT* contain the `crispr_DT` data, as it exceeds the GitHub file size limit.
+  - The `.tar.gz` in the latest [release's](https://github.com/CutillasLab/cordial/releases/latest) assets *DOES* contain the data.
