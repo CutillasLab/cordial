@@ -1,11 +1,11 @@
-#' cordial: A pleasant tonic for convenient correlation analysis in R
+#' cordial: A Pleasant Tonic For Parallel Correlation Analysis In R
 #'
 #' The \code{cordial} package provides functions to compute pairwise Pearson's
 #' correlations of a dataset, or specified targets simultaneously in parallel.
 #' Conveniently includes the ability to filter the input dataset and select a
 #' subset of columns to compute correlations. Outputs Pearson's product moment
-#' correlation coefficients, p-values, adjusted p-values, and observation
-#' counts in long-format.
+#' correlation coefficients, p-values, adjusted p-values, linear model slope
+#' and observation counts in long-format.
 #'
 #' @section \code{cordial} functions:
 #' \itemize{

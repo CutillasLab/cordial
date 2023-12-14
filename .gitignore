@@ -40,3 +40,6 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+# Specific files
+data/crispr_DT.rda
