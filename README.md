@@ -1,5 +1,5 @@
 # cordial
-**A Pleasant Tonic For Convenient Correlation Analysis In R**
+**A Pleasant Tonic For Parallel Correlation Analysis In R**
 
 Computes pairwise Pearson's correlations of a dataset, or 
 specified targets simultaneously in parallel. Additionally, fits a 
