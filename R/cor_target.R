@@ -185,16 +185,16 @@ cor_target <- function(
         call. = FALSE
       )
     }
-    if (any(select_cols %!in% colnames(metadata))) {
-      stop(
-        '
-        Error: `select_cols` must index within `metadata`:
-        i `metadata` has been supplied.
-        x `select_cols` does not index within `metadata`.
-        ',
-        call. = FALSE
-      )
-    }
+    # if (any(select_cols %!in% colnames(metadata))) {
+    #   stop(
+    #     '
+    #     Error: `select_cols` must index within `metadata`:
+    #     i `metadata` has been supplied.
+    #     x `select_cols` does not index within `metadata`.
+    #     ',
+    #     call. = FALSE
+    #   )
+    # }
   }
 
   if (!is.null(filter_rows)) {
@@ -220,17 +220,17 @@ cor_target <- function(
           call. = FALSE
         )
       }
-    } else if (any(select_cols %!in% colnames(metadata))) {
-      stop(
-        '
-        Error: `select_cols` must index within `metadata`:
-        i `filter_rows` has been supplied.
-        i `metadata` has been supplied.
-        x `select_cols` does not index within `metadata`.
-        ',
-        call. = FALSE
-      )
-    }
+    } # else if (any(select_cols %!in% colnames(metadata))) {
+    #   stop(
+    #     '
+    #     Error: `select_cols` must index within `metadata`:
+    #     i `filter_rows` has been supplied.
+    #     i `metadata` has been supplied.
+    #     x `select_cols` does not index within `metadata`.
+    #     ',
+    #     call. = FALSE
+    #   )
+    # }
   }
 
 
@@ -291,10 +291,35 @@ cor_target <- function(
     )
     value_cor <- future::value(future_cor)
 
+
+    # Linear model
+    future_lm <- future::future(
+      {
+        dataset[, furrr::future_map2(
+          .f = function(.x, .y) {
+            lm(.y ~ .x, na.action = "na.omit")$coefficients[2]
+          },
+          .x = .SD, .y = list(get(target)),
+          .options = furrr::furrr_options(globals = FALSE)
+        ),
+        .SDcols = select_cols
+        ]
+      },
+      packages = c("furrr", "data.table"),
+      globals = list(
+        dataset = dataset,
+        target = target,
+        select_cols = select_cols
+      )
+    )
+    value_lm <- future::value(future_lm)
+
+
     # Create output data.table (long format)
     result_DT <- data.table::data.table(
       Target = target,
       Correlation = colnames(value_cor),
+      Slope = unlist(value_lm, use.names = FALSE),
       r = unlist(value_cor[1L], use.names = FALSE),
       p = unlist(value_cor[2L], use.names = FALSE)
     )

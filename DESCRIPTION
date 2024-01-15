@@ -1,6 +1,6 @@
 Package: cordial
 Title: A Pleasant Tonic For Parallel Correlation Analysis In R
-Version: 0.01.08
+Version: 0.01.09
 Authors@R: c(
     person("Irbaz", "Badshah", , "i.badshah@qmul.ac.uk", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-7545-3851")),
@@ -28,3 +28,6 @@ Imports:
 Depends: 
     R (>= 3.5.0)
 LazyData: true
+Suggests: 
+    ggplot2,
+    ggrepel

@@ -16,7 +16,7 @@
 #'   \item{\strong{depmap_id}}{Cell line DepMap ID. The \code{data.table} \code{key}}
 #'   \item{\strong{cell_line_name}}{Cell line name}
 #'   \item{\strong{stripped_cell_line_name}}{Stripped cell line name}
-#'   \item{\strong{CCLE_Name}}{Cancer Cell Line Encyclopedia name}
+#'   \item{\strong{CCLE_Name}}{Cancer Cell Line Encyclopaedia name}
 #'   \item{\strong{Alias}}{Alias}
 #'   \item{\strong{COSMICID}}{Catalogue Of Somatic Mutations In Cancer ID}
 #'   \item{\strong{sex}}{Sex of individual from which sample was derived}
