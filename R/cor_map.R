@@ -71,7 +71,7 @@
 #' "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr", "none")}; \code{"BH"}
 #' (alias \code{"fdr"}) (default).
 #'
-#' @return A \code{\link[data.table:data.table]{data.table}} in long-format of
+#' @return A \code{\link[data.table:data.table]{data.table}} in long-format
 #' of Pearson's product moment correlation coefficients (\code{r}), p-values
 #' (\code{p}), adjusted p-values (\code{q}), and observation counts
 #' (\code{n}) for pairwise Pearson's correlations.
@@ -158,16 +158,16 @@ cor_map <- function(
         call. = FALSE
       )
     }
-    if (any(select_cols %!in% colnames(metadata))) {
-      stop(
-        '
-        Error: `select_cols` must index within `metadata`.
-        i `metadata` has been supplied.
-        x `select_cols` does not index within `metadata`.
-        ',
-        call. = FALSE
-      )
-    }
+    # if (any(select_cols %!in% colnames(metadata))) {
+    #   stop(
+    #     '
+    #     Error: `select_cols` must index within `metadata`.
+    #     i `metadata` has been supplied.
+    #     x `select_cols` does not index within `metadata`.
+    #     ',
+    #     call. = FALSE
+    #   )
+    # }
   }
 
   if (!is.null(filter_rows)) {
@@ -193,17 +193,17 @@ cor_map <- function(
           call. = FALSE
         )
       }
-    } else if (any(select_cols %!in% colnames(metadata))) {
-      stop(
-        '
-        Error: `select_cols` must index within `metadata`.
-        i `filter_rows` has been supplied.
-        i `metadata` has been supplied.
-        x `select_cols` does not index within `metadata`.
-        ',
-        call. = FALSE
-      )
-    }
+    } # else if (any(select_cols %!in% colnames(metadata))) {
+    #   stop(
+    #     '
+    #     Error: `select_cols` must index within `metadata`.
+    #     i `filter_rows` has been supplied.
+    #     i `metadata` has been supplied.
+    #     x `select_cols` does not index within `metadata`.
+    #     ',
+    #     call. = FALSE
+    #   )
+    # }
   }
 
 
@@ -252,16 +252,20 @@ cor_map <- function(
       collapse::qDT(aperm(cor_result)),
       keep.names = "Correlation"
     ) %>%
-      tidyr::separate(.,
-               col = 1L, into = c("Correlation", "Target"), sep = "[.]"
+      tidyr::separate(
+        .,
+        col = 1L, into = c("Correlation", "Target"), sep = "[.]"
       ) %>%
-      data.table::setnames(.,
-               old = c("V1", "V2", "V3"),
-               new = c("r", "n", "p")
+      data.table::setnames(
+        .,
+        old = c("V1", "V2", "V3"),
+        new = c("r", "n", "p")
       ) %>%
-      data.table::setcolorder(.,
-                  c("Target", "Correlation", "n", "r", "p")
+      data.table::setcolorder(
+        .,
+        c("Target", "Correlation", "n", "r", "p")
       ) %>%
+      data.table::as.data.table(.) %>%
       {
         unique(
           .[, c("Target", "Correlation") :=
