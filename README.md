@@ -21,15 +21,49 @@ long-format.
 
 ### R console
 #### One-liner
-Run: `devtools::install_github("CutillasLab/cordial@*release")`
+Run: `devtools::install_url("https://github.com/CutillasLab/cordial/releases/download/v0.1.10/cordial_0.1.10.tar.gz")`
    - *You may first need to install `devtools`: `install.packages("devtools")`*
 #### Manual
 1. Download the Package Archive File (**cordial_x.x.x.tar.gz**) of the latest [release](https://github.com/CutillasLab/cordial/releases/latest).
    - *Not the Source code*
 2. Run: `devtools::install_local(path = "C:/path/to/cordial_x.x.x.tar.gz")`
    - *Replace the string argument to* `path` *with the actual location*
-   - *You may first need to install `devtools`: `install.packages("devtools")`*
+   - *You may first need to install* `devtools`*:* `install.packages("devtools")`
 
-## Notes
+### Notes
   - The source files in `cordial/data/` does *NOT* contain the `crispr_DT` data, as it exceeds the GitHub file size limit.
   - The `.tar.gz` in the latest [release's](https://github.com/CutillasLab/cordial/releases/latest) assets *DOES* contain the data.
+  - Due to the excessive size of included datasets, [Git Large File Storage (LFS)](https://git-lfs.com/) has been implemented. This causes known issues when installing packages directly from GitHub (`bad restore file magic number (file may be corrupted) -- no data loaded`); therefore, installations *must* use the Package Archive File (**cordial_x.x.x.tar.gz**) from the latest [release](https://github.com/CutillasLab/cordial/releases/latest).
+  - If installation error occurs stating that certain required packages are missing, try manually installing the missing packages listed prior to reattempting to install `cordial`, e.g.:
+    - `devtools::install_cran(c("ggplot2", "ggrepel", "magrittr", "tidyr", "purrr", "future", "furrr", "collapse", "data.table"))`
+  - If error persists, it may also be required to install additional build tools specific to your operating system (OS) and R version:
+    - **Windows:** [https://cran.r-project.org/bin/windows/Rtools/](https://cran.r-project.org/bin/windows/Rtools/)
+    - **macOS:** [https://cran.r-project.org/bin/macosx/tools](https://cran.r-project.org/bin/macosx/tools)
+    - **Linux:** [https://cran.r-project.org/bin/linux/](https://cran.r-project.org/bin/linux/)
+
+## Quickstart
+### Load
+  - To load `cordial`:
+    - `library(cordial)`
+  - After loading the package, explore the help documentation by entering into the console the name of the package or function prefixed with a question mark, e.g.:
+    - `?cordial`
+    - `?cor_map`
+
+### Functions
+#### `cor_map()`
+To get pairwise correlations for *all target (column) permutations*.
+  - Parameters:
+    - `dataset`: A wide-format numerical [`data.table`](https://rdatatable.gitlab.io/data.table/).
+    - `select_cols`: A vector of column names (character), or indices (numeric) to select; must omit non-numeric columns.
+    - `filter_rows`: A named `list()`. Values specify which rows to subset. Names correspond to column names in `dataset`, or `metadata` if supplied.
+    - `metadata`: An optional `data.table` with values corresponding to rows matching in `dataset`.
+    - `self`: `"yes"` includes self-correlations; `"no"` omits.
+    - `method`: Correction method for p-value adjustment, passed to `stats::p.adjust()`.
+
+#### `cor_target_map()`
+To get all correlations for a *selection of key targets*.
+  - Supply the key targets as a vector (e.g., `c("COLUMN1", "COLUMN2")`) to the additional `target` parameter.
+
+#### `cor_target()`
+To get all correlations for a *single key target*.
+  - Supply a character string of the key target (e.g., `"COLUMN1"`) to the additional `target` parameter.
