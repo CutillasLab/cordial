@@ -34,6 +34,7 @@ Run \code{\link{start_parallel}} at the beginning of working with
 processing, see \code{\link{end_parallel}}.
 }
 \examples{
+\dontrun{
 # Create parallel multisessions equal to the number of physical cores
 
 start_parallel()       # Default
@@ -43,6 +44,7 @@ start_parallel(FALSE)  # Same as above
 # Create parallel multisessions equal to the number of logical cores
 
 start_parallel(TRUE)
+}
 }
 \seealso{
 \itemize{

@@ -25,9 +25,11 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' # Begin sequential processing
 #'
 #' end_parallel()
+#' }
 end_parallel <- function() {
   # Load package
   require(future)

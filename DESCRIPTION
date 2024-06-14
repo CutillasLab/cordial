@@ -1,11 +1,17 @@
 Package: cordial
 Title: A Pleasant Tonic For Parallel Correlation Analysis In R
-Version: 0.01.09
+Version: 0.1.10
 Authors@R: c(
-    person("Irbaz", "Badshah", , "i.badshah@qmul.ac.uk", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0002-7545-3851")),
-    person("Pedro", "Cutillas", , "p.cutillas@qmul.ac.uk", role = "aut",
-           comment = c(ORCID = "0000-0002-3426-2274"))
+    person(given = c("Irbaz", "I."),
+      family = "Badshah",
+      role = c("aut", "cre"),
+      email = "i.badshah@qmul.ac.uk",
+      comment = c(ORCID = "0000-0002-7545-3851")),
+    person(given = c("Pedro", "R."),
+      family = "Cutillas",
+      role = "aut",
+      email = "p.cutillas@qmul.ac.uk",
+      comment = c(ORCID = "0000-0002-3426-2274"))
   )
 Description: Computes pairwise Pearson's correlations of a dataset, or 
     specified targets simultaneously in parallel. Conveniently includes the 
@@ -16,7 +22,7 @@ Description: Computes pairwise Pearson's correlations of a dataset, or
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
 Imports:
     magrittr (>= 2.0.1),
     tidyr (>= 1.1.4),

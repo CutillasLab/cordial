@@ -1,3 +1,4 @@
+## usethis namespace: start
 #' cordial: A Pleasant Tonic For Parallel Correlation Analysis In R
 #'
 #' The \code{cordial} package provides functions to compute pairwise Pearson's
@@ -30,8 +31,10 @@
 #' project.
 #' }
 #'
-#' @docType package
-#' @name cordial
+#' @references
+#' Badshah II, Cutillas PR. Systematic identification of biochemical networks in cancer cells by functional pathway inference analysis. Bioinformatics. 2023 Jan 1;39(1):btac769.
+#' PMID: 36448701; PMCID: PMC9805595.
+#' \href{https://doi.org/10.1093/bioinformatics/btac769}{https://doi.org/10.1093/bioinformatics/btac769}
 #'
 #' @importFrom magrittr %>%
 #' @importFrom tidyr separate
@@ -41,5 +44,8 @@
 #' @import furrr
 #' @import collapse
 #' @import data.table
+#'
+#' @keywords internal
+"_PACKAGE"
+## usethis namespace: end
 NULL
-#> NULL

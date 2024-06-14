@@ -36,6 +36,7 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' # Create parallel multisessions equal to the number of physical cores
 #'
 #' start_parallel()       # Default
@@ -45,6 +46,7 @@
 #' # Create parallel multisessions equal to the number of logical cores
 #'
 #' start_parallel(TRUE)
+#' }
 start_parallel <- function(logical_cores = FALSE) {
   # Load package
   require(future)
