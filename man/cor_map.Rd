@@ -39,7 +39,7 @@ passed to \code{\link[stats:p.adjust]{p.adjust}}. One of: \code{c("holm",
 (alias \code{"fdr"}) (default).}
 }
 \value{
-A \code{\link[data.table:data.table]{data.table}} in long-format of
+A \code{\link[data.table:data.table]{data.table}} in long-format
 of Pearson's product moment correlation coefficients (\code{r}), p-values
 (\code{p}), adjusted p-values (\code{q}), and observation counts
 (\code{n}) for pairwise Pearson's correlations.

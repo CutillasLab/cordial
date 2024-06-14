@@ -22,9 +22,11 @@ functions to return to sequential processing. Alternatively, users may set
 their own \code{\link[future]{plan}} explicitly for more control.
 }
 \examples{
+\dontrun{
 # Begin sequential processing
 
 end_parallel()
+}
 }
 \seealso{
 \itemize{
