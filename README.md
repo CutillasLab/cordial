@@ -89,3 +89,8 @@ Correlations for *all* columns will be calculated, unless a subset is supplied t
 The additional `target` parameter (`cor_target_map()`, `cor_target()`) allows further subsetting of the pairwise correlations to make, i.e.:
 
   - *corr*(*X*, *Y*) = *corr*(*`target`*, *`select_cols`*)
+
+## References
+Badshah II, Cutillas PR. Systematic identification of biochemical networks in cancer cells by functional pathway inference analysis. Bioinformatics. 2023 Jan 1;39(1):btac769.
+PMID: 36448701; PMCID: PMC9805595.
+[https://doi.org/10.1093/bioinformatics/btac769](https://doi.org/10.1093/bioinformatics/btac769)
