@@ -21,8 +21,14 @@ long-format.
 
 ### R console
 #### One-liner
-Run: `devtools::install_url("https://github.com/CutillasLab/cordial/releases/download/v0.1.10/cordial_0.1.10.tar.gz")`
+Run:
+```
+devtools::install_url(
+ "https://github.com/CutillasLab/cordial/releases/download/v0.1.10/cordial_0.1.10.tar.gz"
+)
+```
    - *You may first need to install `devtools`: `install.packages("devtools")`*
+
 #### Manual
 1. Download the Package Archive File (**cordial_x.x.x.tar.gz**) of the latest [release](https://github.com/CutillasLab/cordial/releases/latest).
    - *Not the Source code*
@@ -35,7 +41,9 @@ Run: `devtools::install_url("https://github.com/CutillasLab/cordial/releases/dow
   - The `.tar.gz` in the latest [release's](https://github.com/CutillasLab/cordial/releases/latest) assets *DOES* contain the data.
   - Due to the excessive size of included datasets, [Git Large File Storage (LFS)](https://git-lfs.com/) has been implemented. This causes known issues when installing packages directly from GitHub (`bad restore file magic number (file may be corrupted) -- no data loaded`); therefore, installations *must* use the Package Archive File (**cordial_x.x.x.tar.gz**) from the latest [release](https://github.com/CutillasLab/cordial/releases/latest).
   - If installation error occurs stating that certain required packages are missing, try manually installing the missing packages listed prior to reattempting to install `cordial`, e.g.:
-    - `devtools::install_cran(c("ggplot2", "ggrepel", "magrittr", "tidyr", "purrr", "future", "furrr", "collapse", "data.table"))`
+```
+devtools::install_cran(c("ggplot2", "ggrepel", "magrittr", "tidyr", "purrr", "future", "furrr", "collapse", "data.table"))
+```
   - If error persists, it may also be required to install additional build tools specific to your operating system (OS) and R version:
     - **Windows:** [https://cran.r-project.org/bin/windows/Rtools/](https://cran.r-project.org/bin/windows/Rtools/)
     - **macOS:** [https://cran.r-project.org/bin/macosx/tools](https://cran.r-project.org/bin/macosx/tools)
@@ -53,12 +61,12 @@ Run: `devtools::install_url("https://github.com/CutillasLab/cordial/releases/dow
 #### `cor_map()`
 To get pairwise correlations for *all target (column) permutations*.
   - Parameters:
-    - `dataset`: A wide-format numerical [`data.table`](https://rdatatable.gitlab.io/data.table/).
-    - `select_cols`: A vector of column names (character), or indices (numeric) to select; must omit non-numeric columns.
-    - `filter_rows`: A named `list()`. Values specify which rows to subset. Names correspond to column names in `dataset`, or `metadata` if supplied.
+    - `dataset`: A wide-format [`data.table`](https://rdatatable.gitlab.io/data.table/).
+    - `select_cols`: A `vector` of column names (`character`), or indices (`numeric`) to select; must omit non-numeric columns.
+    - `filter_rows`: A named `list`. Values specify which rows to subset. Names correspond to column names in `dataset`, or `metadata` if supplied.
     - `metadata`: An optional `data.table` with values corresponding to rows matching in `dataset`.
     - `self`: `"yes"` includes self-correlations; `"no"` omits.
-    - `method`: Correction method for p-value adjustment, passed to `stats::p.adjust()`.
+    - `method`: A `character` string. Correction method for p-value adjustment, passed to `stats::p.adjust()`.
 
 #### `cor_target_map()`
 To get all correlations for a *selection of key targets*.
@@ -67,3 +75,7 @@ To get all correlations for a *selection of key targets*.
 #### `cor_target()`
 To get all correlations for a *single key target*.
   - Supply a character string of the key target (e.g., `"COLUMN1"`) to the additional `target` parameter.
+  
+#### Notes
+Correlations for *all* columns will be calculated, unless a subset is supplied to `select_cols`.
+The additional `target` parameter (`cor_target_map()`, `cor_target()`) allows further subsetting of the pairwise correlations to make, i.e. *corr*(*X*, *Y*) = *corr*(*`target`*, *`select_cols`*).
