@@ -23,7 +23,9 @@ long-format.
 #### One-liner
 Run:
 ```
-devtools::install_github("CutillasLab/cordial@*release")
+devtools::install_url(
+ "https://github.com/CutillasLab/cordial/releases/download/v0.1.10/cordial_0.1.10.tar.gz"
+)
 ```
    - *You may first need to install* `devtools`*:* `install.packages("devtools")`
 
